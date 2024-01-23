@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     private let photosName: [String] = Array(0..<20) .map{"\($0)"}
     
     @IBOutlet private var tableView: UITableView!
@@ -32,7 +32,7 @@ class ImagesListViewController: UIViewController {
         cell.cellImage.image = image
         cell.dateLabel.text = dateFormatter.string(from: Date())
         
-        let isLiked = indexPath.row % 2 == 0
+        let isLiked = indexPath.row % 2 == 1
         let likeImage = isLiked ? UIImage(named: "Red Like") : UIImage(named: "White Like")
         cell.likeButton.setImage(likeImage, for: .normal)
     }
@@ -64,7 +64,6 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         guard let imageListCell = cell as? ImagesListCell else {
-            print("жопаэ")
             return UITableViewCell()
         }
         
