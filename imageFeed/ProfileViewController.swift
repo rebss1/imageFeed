@@ -14,7 +14,7 @@ final class ProfileViewController: UIViewController {
     let whiteWithAlphaColor = UIColor(named: "YP White (Alpha 50)")
         
     override func viewDidLoad() {
-        let image = UIImage(named: "profile_image")
+        let image = UIImage(named: "userpic")
         let imageView = UIImageView(image: image)
         imageView.tintColor = .gray
         
@@ -62,7 +62,7 @@ final class ProfileViewController: UIViewController {
         let button = UIButton.systemButton(with: UIImage(named: "logout_image")!,
                                            target: self,
                                            action: nil)
-        button.tintColor = .red
+        button.tintColor = UIColor(named: "YP Red")
         
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
