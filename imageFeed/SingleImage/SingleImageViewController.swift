@@ -1,14 +1,7 @@
-//
-//  SingleImageViewController.swift
-//  imageFeed
-//
-//  Created by Илья Лощилов on 22.01.2024.
-//
-
 import Foundation
 import UIKit
 
-class SingleImageViewController: UIViewController {
+final class SingleImageViewController: UIViewController {
     var image: UIImage! {
         didSet {
             guard isViewLoaded else { return } 

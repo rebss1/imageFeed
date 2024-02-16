@@ -1,10 +1,3 @@
-//
-//  ProfileViewController.swift
-//  imageFeed
-//
-//  Created by Илья Лощилов on 22.01.2024.
-//
-
 import Foundation
 import UIKit
 
