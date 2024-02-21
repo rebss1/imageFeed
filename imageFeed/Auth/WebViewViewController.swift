@@ -18,13 +18,13 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),
+            URLQueryItem(name: "client_id", value: accessKey),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: AccessScope)
+            URLQueryItem(name: "scope", value: accessScope)
         ]
         let url = urlComponents.url!
         let request = URLRequest(url: url)
@@ -38,7 +38,7 @@ final class WebViewViewController: UIViewController {
         super.viewDidAppear(animated)
         
         webView.addObserver(self,
-                            forKeyPath: #keyPath(webView.estimatedProgress),
+                            forKeyPath: #keyPath(WKWebView.estimatedProgress),
                             options: .new,
                             context: nil)
         updateProgress()
@@ -46,7 +46,7 @@ final class WebViewViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        webView.removeObserver(self, forKeyPath: #keyPath(webView.estimatedProgress))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
     }
     
     @IBAction private func didTapBackButton(_ sender: Any) {
