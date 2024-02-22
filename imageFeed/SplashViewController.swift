@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController {
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     
     override func viewDidAppear(_ animated: Bool) {
