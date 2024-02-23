@@ -7,14 +7,6 @@ final class OAuth2Service {
     
     private let urlSession = URLSession.shared
     
-    private (set) var authToken: String? {
-           get {
-               return OAuth2TokenStorage().token
-           }
-           set {
-               OAuth2TokenStorage().token = newValue
-   } }
-    
     private func makeOAuthTokenRequest(code: String) -> URLRequest {
         let baseURL = URL(string: "https://unsplash.com")!
         let url = URL(
@@ -50,9 +42,7 @@ final class OAuth2Service {
         let task = object(for: request) { result in
                 switch result {
                 case .success(let body):
-                    let authToken = body.accessToken
-                    self.authToken = authToken
-                    completion(.success(authToken))
+                    completion(.success(body.accessToken))
                 case .failure(let error):
                     completion(.failure(error))
             }
