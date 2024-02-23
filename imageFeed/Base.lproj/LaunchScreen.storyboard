@@ -18,7 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="iQ7-A9-il4">
-                                <rect key="frame" x="159.66666666666666" y="387.66666666666669" width="74" height="77"/>
+                                <rect key="frame" x="159" y="387" width="75" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="B6m-e0-Cqq"/>
+                                    <constraint firstAttribute="width" constant="75" id="gjC-8g-ZXM"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -35,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreenIcon" width="74" height="77"/>
+        <image name="LaunchScreenIcon" width="25" height="26"/>
         <namedColor name="YP Background">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

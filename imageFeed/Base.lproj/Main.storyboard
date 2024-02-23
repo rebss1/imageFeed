@@ -19,7 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9i5-ol-VFe">
-                                <rect key="frame" x="184.33333333333334" y="426" width="24.333333333333343" height="25.333333333333314"/>
+                                <rect key="frame" x="159" y="399.66666666666669" width="75" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Hmu-Lj-Oe6"/>
+                                    <constraint firstAttribute="height" constant="78" id="yH5-vN-ZWr"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M1x-zQ-f2J"/>
@@ -376,7 +380,7 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="LaunchScreenIcon" width="24.333333969116211" height="25.333333969116211"/>
+        <image name="LaunchScreenIcon" width="25" height="26"/>
         <image name="Red Like" width="42" height="42"/>
         <image name="UnsplashLogo" width="120" height="120"/>
         <image name="backward" width="24" height="24"/>
