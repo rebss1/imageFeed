@@ -320,7 +320,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR2-LG-NXQ">
-                                <rect key="frame" x="16" y="59" width="24" height="24"/>
+                                <rect key="frame" x="9" y="55" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="ddV-1B-yXK"/>
                                     <constraint firstAttribute="height" constant="24" id="yay-XE-lYI"/>
@@ -332,7 +332,7 @@
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AQC-vB-H6n">
-                                <rect key="frame" x="0.0" y="83" width="393" height="4"/>
+                                <rect key="frame" x="0.0" y="79" width="393" height="4"/>
                                 <color key="tintColor" name="YP Black"/>
                             </progressView>
                         </subviews>
@@ -341,12 +341,12 @@
                         <constraints>
                             <constraint firstItem="Z8E-tq-6Ls" firstAttribute="bottom" secondItem="yNh-Dh-IH2" secondAttribute="bottom" id="32w-dx-WTO"/>
                             <constraint firstItem="Z8E-tq-6Ls" firstAttribute="trailing" secondItem="yNh-Dh-IH2" secondAttribute="trailing" id="56O-Ow-Ksh"/>
-                            <constraint firstItem="mR2-LG-NXQ" firstAttribute="top" secondItem="Z8E-tq-6Ls" secondAttribute="top" constant="59" id="6SU-3D-DID"/>
+                            <constraint firstItem="mR2-LG-NXQ" firstAttribute="top" secondItem="Z8E-tq-6Ls" secondAttribute="top" constant="55" id="6SU-3D-DID"/>
                             <constraint firstItem="AQC-vB-H6n" firstAttribute="top" secondItem="mR2-LG-NXQ" secondAttribute="bottom" id="HRN-fg-bPG"/>
                             <constraint firstItem="yNh-Dh-IH2" firstAttribute="top" secondItem="Z8E-tq-6Ls" secondAttribute="top" id="KOR-Uy-fi6"/>
                             <constraint firstItem="Z8E-tq-6Ls" firstAttribute="trailing" secondItem="AQC-vB-H6n" secondAttribute="trailing" id="Q2X-7A-RgG"/>
                             <constraint firstItem="yNh-Dh-IH2" firstAttribute="leading" secondItem="Z8E-tq-6Ls" secondAttribute="leading" id="YKS-nn-0ZO"/>
-                            <constraint firstItem="mR2-LG-NXQ" firstAttribute="leading" secondItem="Z8E-tq-6Ls" secondAttribute="leading" constant="16" id="a3X-cF-GMh"/>
+                            <constraint firstItem="mR2-LG-NXQ" firstAttribute="leading" secondItem="Z8E-tq-6Ls" secondAttribute="leading" constant="9" id="a3X-cF-GMh"/>
                             <constraint firstItem="AQC-vB-H6n" firstAttribute="leading" secondItem="Z8E-tq-6Ls" secondAttribute="leading" id="nzk-xY-dMC"/>
                         </constraints>
                     </view>
