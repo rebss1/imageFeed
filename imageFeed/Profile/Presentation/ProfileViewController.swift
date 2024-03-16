@@ -52,8 +52,6 @@ final class ProfileViewController: UIViewController {
     }
     
     private func addConstraints() {
-        //let image = UIImage(named: "userpic")
-        //imageView = UIImageView(image: image)
         imageView.tintColor = .gray
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
