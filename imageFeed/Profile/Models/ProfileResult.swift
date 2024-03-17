@@ -1,43 +1,7 @@
 
 import Foundation
-/*
-struct ProfileResult: Codable {
-    var id: String
-    var updatedAt: String?
-    var username: String
-    var firstName, lastName: String?
-    var twitterUsername: String?
-    var portfolioURL: String?
-    var bio: String?
-    var location: String?
-    var totalLikes, totalPhotos, totalCollections: Int?
-    var followedByUser: Bool?
-    var downloads, uploadsRemaining: Int?
-    var instagramUsername, email: String?
-    //var links: [String?]
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case updatedAt = "updated_at"
-        case username
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case twitterUsername = "twitter_username"
-        case portfolioURL = "portfolio_url"
-        case bio
-        case location
-        case totalLikes = "total_likes"
-        case totalPhotos = "total_photos"
-        case totalCollections = "total_collections"
-        case followedByUser = "followed_by_user"
-        case downloads
-        case uploadsRemaining = "uploads_remaining"
-        case instagramUsername = "instagram_username"
-        case email
-        //case links
-    }
-}*/
-
+// MARK: - ProfileResult
 struct ProfileResult: Codable {
     var id: String
     //var updatedAt: String?

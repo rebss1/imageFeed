@@ -35,6 +35,7 @@ final class NetworkClient {
             if let data {
                 do {
                     let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let response = try decoder.decode(Response.self, from: data)
                     completion(.success(response))
                     self.task = nil

@@ -1,6 +1,7 @@
 
 import Foundation
 
+// MARK: - Profile
 struct Profile: Codable {
     var username: String
     var name: String
