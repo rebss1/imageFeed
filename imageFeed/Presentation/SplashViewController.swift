@@ -7,7 +7,6 @@ final class SplashViewController: UIViewController {
     private let profileService = ProfileService.shared
     private let storage = OAuthTokenStorage()
     private let profileImageService = ProfileImageService.shared
-    private let authViewController = AuthViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +19,15 @@ final class SplashViewController: UIViewController {
             guard let token = storage.token else { return }
                 fetchProfile(token)
         } else {
-            authViewController.delegate = self
             switchToAuthViewController()
         }
     }
     
     private func switchToAuthViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController")
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true)
+        let authViewController = AuthViewController()
+        authViewController.delegate = self
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated: true)
     }
     
     private func switchToTabBarController() {
