@@ -21,9 +21,15 @@ final class SplashViewController: UIViewController {
                 fetchProfile(token)
         } else {
             authViewController.delegate = self
-            authViewController.modalPresentationStyle = .fullScreen
-            present(authViewController, animated: true)
+            switchToAuthViewController()
         }
+    }
+    
+    private func switchToAuthViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController")
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
     
     private func switchToTabBarController() {
