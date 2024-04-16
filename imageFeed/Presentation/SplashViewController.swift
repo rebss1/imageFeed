@@ -26,8 +26,10 @@ final class SplashViewController: UIViewController {
     private func switchToAuthViewController() {
         let authViewController = AuthViewController()
         authViewController.delegate = self
-        authViewController.modalPresentationStyle = .fullScreen
-        present(authViewController, animated: true)
+        let navigationController = UINavigationController(rootViewController: authViewController)
+        navigationController.navigationBar.topItem?.title = ""
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
     
     private func switchToTabBarController() {

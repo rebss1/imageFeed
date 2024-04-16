@@ -49,12 +49,7 @@ final class WebViewViewController: UIViewController {
    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         updateProgress()
-    }
-    
-    @IBAction private func didTapBackButton(_ sender: Any) {
-        delegate?.webViewViewControllerDidCancel(self)
     }
     
     override func loadView() {
