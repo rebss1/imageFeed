@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkConstants {
     //использую форс, потому что он в любом случае проходит, ведь там правильная строка, которая не меняется 
-    static let defaultBaseURL = URL(string: "https://api.unsplash.com")!
+    static let defaultBaseURL = URL(string: "https://api.unsplash.com")
     static let host = "api.unsplash.com"
     static let schema = "https"
 }

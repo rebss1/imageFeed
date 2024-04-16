@@ -21,7 +21,7 @@ final class ProfileService {
                       completion: @escaping (Result<Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
         
-        let request = URLRequest.makeUrlRequest(httpMethod: HTTPMethods.get.rawValue, host: NetworkConstants.host, path: ProfileConstants.usersProfilePath, queryItems: nil)
+        guard let request = URLRequest.makeUrlRequest(httpMethod: HTTPMethods.get.rawValue, host: NetworkConstants.host, path: ProfileConstants.usersProfilePath, queryItems: nil) else { return }
         
         networkClient.fetch(urlRequest: request) { [weak self] (result: Result<ProfileResult, Error>) in
             switch result {
