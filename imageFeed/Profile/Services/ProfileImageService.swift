@@ -18,7 +18,7 @@ final class ProfileImageService {
                               completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         
-        let request = URLRequest.makeUrlRequest(httpMethod: HTTPMethods.get.rawValue, host: NetworkConstants.host, path: "\(ProfileConstants.usersPublicProfilePath)\(username)", queryItems: nil)
+        guard let request = URLRequest.makeUrlRequest(httpMethod: HTTPMethods.get.rawValue, host: NetworkConstants.host, path: "\(ProfileConstants.usersPublicProfilePath)\(username)", queryItems: nil) else { return }
         
         networkClient.fetch(urlRequest: request) { [weak self] (result: Result<ProfileResult, Error>) in
             switch result {

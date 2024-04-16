@@ -25,10 +25,9 @@ final class OAuthService {
             URLQueryItem(name: AuthKeys.clientSecret.rawValue, value: AuthConstants.secretKey),
             URLQueryItem(name: AuthKeys.redirectUri.rawValue, value: AuthConstants.redirectURI),
             URLQueryItem(name: AuthKeys.code.rawValue, value: code),
-            //URLQueryItem(name: AuthKeys.scope.rawValue, value: AuthConstants.accessScope),
             URLQueryItem(name: AuthKeys.grantType.rawValue, value: AuthKeys.authorizationCode.rawValue)]
         
-        let request = URLRequest.makeUrlRequest(httpMethod: HTTPMethods.post.rawValue, host: AuthConstants.hostToken, path: AuthConstants.pathToToken, queryItems: queryItems)
+        guard let request = URLRequest.makeUrlRequest(httpMethod: HTTPMethods.post.rawValue, host: AuthConstants.hostToken, path: AuthConstants.pathToToken, queryItems: queryItems) else { return }
         
         networkClient.fetch(urlRequest: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
             switch result {
