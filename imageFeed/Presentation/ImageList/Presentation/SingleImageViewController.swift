@@ -1,12 +1,15 @@
 import Foundation
 import UIKit
+import Kingfisher
 
 final class SingleImageViewController: UIViewController {
-    var image: UIImage! {
+    var imageUrl: URL? {
         didSet {
             guard isViewLoaded else { return } 
-            imageView.image = image
-            rescaleAndCenterImageInScrollView(image: image)
+            imageView.kf.setImage(with: imageUrl)
+            if let image = imageView.image {
+                rescaleAndCenterImageInScrollView(image: image)
+            }
         }
     }
     
@@ -19,7 +22,7 @@ final class SingleImageViewController: UIViewController {
     
     @IBAction private func didTapShareButton(_ sender: UIButton) {
             let share = UIActivityViewController(
-                activityItems: [image as Any],
+                activityItems: [imageView.image as Any],
             applicationActivities: nil
         )
         present(share, animated: true, completion: nil)
@@ -27,8 +30,10 @@ final class SingleImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
-        rescaleAndCenterImageInScrollView(image: image)
+        imageView.kf.setImage(with: imageUrl)
+        if let image = imageView.image {
+            rescaleAndCenterImageInScrollView(image: image)
+        }
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
     }
@@ -54,5 +59,12 @@ final class SingleImageViewController: UIViewController {
 extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        view?.frame = CGRect(x: self.view.frame.midX - (view?.frame.width)! / 2,
+                             y: self.view.frame.midY - (view?.frame.height)! / 2,
+                             width: (view?.frame.width)!,
+                             height: (view?.frame.height)!)
     }
 }

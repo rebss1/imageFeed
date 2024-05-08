@@ -87,7 +87,10 @@ extension SplashViewController: AuthViewControllerDelegate {
                     self?.profileImageService.fetchProfileImageURL(profile.username) { _ in }
                     self?.switchToTabBarController()
                 case .failure:
-                    print("error in splashViewController")
+                    let alert = UIAlertController(title: "OOOPS!",
+                                                  message: "Something went wrong with Unsplash API(",
+                                                  preferredStyle: .alert)
+                    self?.present(alert, animated: true)
                     break
                 }
             }

@@ -52,4 +52,30 @@ final class ImagesListService {
             }
         }
     }
+    
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Photo, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        
+        let method = isLike ? HTTPMethods.post.rawValue : HTTPMethods.delete.rawValue
+        let path = ImagesListConstants.likePath.replacingOccurrences(of: ":id", with: photoId)
+        guard let request = URLRequest.makeUrlRequest(
+            httpMethod: method,
+            path: path,
+            queryItems: nil) else { return }
+        
+        networkClient.fetch(urlRequest: request) { [weak self] (result: Result<LikeResult, Error>) in
+            switch result {
+            case .success(let response):
+                let photo = Photo(response.photo)
+                guard let index = self?.photos.firstIndex(where: { $0.id == photoId}) else { return }
+                DispatchQueue.main.async {
+                    self?.photos[index] = photo
+                }
+                completion(.success(photo))
+            case .failure(let error):
+                completion(.failure(error))
+                break
+            }
+        }
+    }
 }
