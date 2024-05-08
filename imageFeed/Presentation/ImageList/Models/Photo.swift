@@ -32,7 +32,7 @@ struct Photo {
                                height: photoResult.height)
             self.createdAt = photoResult.createdAt
             self.welcomeDescription = photoResult.description
-            self.thumbImageURL = photoResult.urls.small
+            self.thumbImageURL = photoResult.urls.thumb
             self.largeImageURL = photoResult.urls.full
             self.isLiked =  photoResult.likedByUser
         }

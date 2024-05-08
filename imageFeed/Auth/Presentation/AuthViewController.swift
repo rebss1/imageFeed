@@ -10,8 +10,8 @@ protocol AuthViewControllerDelegate: AnyObject {
 }
 
 final class AuthViewController: UIViewController {
-    let whiteColor = UIColor(named: "YP White")
-    let blackColor = UIColor(named: "YP Black")
+    let whiteColor = UIColor(named: "ypWhite")
+    let blackColor = UIColor(named: "ypBlack")
     
     private let showWebViewSegueIdentifier = "ShowWebView"
     private let oauth2Service = OAuthService.shared
@@ -79,7 +79,7 @@ final class AuthViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "nav_back_button")
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
+        navigationItem.backBarButtonItem?.tintColor = blackColor
     }
 }
 

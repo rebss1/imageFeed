@@ -26,9 +26,11 @@ final class ImagesListCell: UITableViewCell {
     
     func setLike(_ isLiked: Bool) {
         if isLiked {
-            self.likeButton.imageView?.image = UIImage(named: "redLike")
+            likeButton.setBackgroundImage(UIImage(named: "redLike"),
+                                          for: .normal)
         } else {
-            self.likeButton.imageView?.image = UIImage(named: "greyLike")
+            likeButton.setBackgroundImage(UIImage(named: "greyLike"),
+                                          for: .normal)
         }
     }
     

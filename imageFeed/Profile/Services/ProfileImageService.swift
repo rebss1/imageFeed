@@ -25,15 +25,19 @@ final class ProfileImageService {
             case .success(let profile):
                 guard let profileImageURL = profile.profileImage?.large else { return }
                 self?.avatarURL = profileImageURL
-                completion(.success(profileImageURL))
                 NotificationCenter.default.post(
                     name: ProfileImageService.didChangeNotification,
                     object: self,
                     userInfo: ["URL": profileImageURL])
+                completion(.success(profileImageURL))
             case .failure(let error):
                 completion(.failure(error))
             }
             
         }
+    }
+    
+    func cleanData() {
+        avatarURL = nil
     }
 }

@@ -78,4 +78,9 @@ final class ImagesListService {
             }
         }
     }
+    
+    func cleanData() {
+        lastLoadedPage = 0
+        photos = []
+    }
 }

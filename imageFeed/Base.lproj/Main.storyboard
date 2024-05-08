@@ -35,7 +35,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="L0i-j2-hOd">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" name="YP Background"/>
+                                <color key="backgroundColor" name="ypBackground "/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageListCell" rowHeight="254" id="wiF-pS-T0Y" customClass="ImagesListCell" customModule="imageFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="254"/>
@@ -82,7 +82,7 @@
                                                 <constraint firstItem="FvK-Ll-yUa" firstAttribute="trailingMargin" secondItem="wTU-8I-j6m" secondAttribute="trailing" constant="-8" id="xzG-Jn-0co"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" name="YP Background"/>
+                                        <color key="backgroundColor" name="ypBackground "/>
                                         <connections>
                                             <outlet property="cellImage" destination="FvK-Ll-yUa" id="PMh-V4-cdI"/>
                                             <outlet property="dateLabel" destination="lzc-c1-iuN" id="vGS-fm-CEn"/>
@@ -168,7 +168,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MYW-PV-Exe"/>
-                        <color key="backgroundColor" name="YP Background"/>
+                        <color key="backgroundColor" name="ypBackground "/>
                         <constraints>
                             <constraint firstItem="FMv-dJ-7Mv" firstAttribute="top" secondItem="MYW-PV-Exe" secondAttribute="top" constant="8" id="48J-6W-LLM"/>
                             <constraint firstAttribute="bottom" secondItem="gq6-Sp-HRr" secondAttribute="bottom" id="61Z-jo-EIX"/>
@@ -204,6 +204,9 @@
         </namedColor>
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ypBackground ">
+            <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

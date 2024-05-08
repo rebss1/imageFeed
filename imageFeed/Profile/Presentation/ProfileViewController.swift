@@ -4,10 +4,12 @@ import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
-    let whiteColor = UIColor(named: "YP White")
-    let whiteWithAlphaColor = UIColor(named: "YP White (Alpha 50)")
+    let whiteColor = UIColor(named: "ypWhite")
+    let whiteWithAlphaColor = UIColor(named: "ypWhite50")
+    let redColor = UIColor(named: "ypRed")
     
     private let profileService = ProfileService.shared
+    private let profileLogoutService = ProfileLogoutService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
     
     var imageView = UIImageView()
@@ -40,7 +42,7 @@ final class ProfileViewController: UIViewController {
         else { return }
         let processor = RoundCornerImageProcessor(cornerRadius: 100)
         imageView.kf.setImage(with: url,
-                              placeholder: UIImage(named: "profile_image"),
+                              placeholder: UIImage(named: "profileImage"),
                               options: [.processor(processor)])
     }
     
@@ -94,15 +96,18 @@ final class ProfileViewController: UIViewController {
         
         let button = UIButton.systemButton(with: UIImage(named: "logout_image")!,
                                            target: self,
-                                           action: nil)
-        button.tintColor = UIColor(named: "YP Red")
+                                           action: #selector(didTapBackButton))
+        button.tintColor = redColor
         
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
         button.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        
+    }
+    
+    @objc private func didTapBackButton() {
+        profileLogoutService.logout()
     }
 }
     

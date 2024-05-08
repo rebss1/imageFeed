@@ -9,8 +9,8 @@ protocol WebViewViewControllerDelegate: AnyObject {
 }
 
 final class WebViewViewController: UIViewController {
-    let greyColor = UIColor(named: "YP Grey")
-    let blackColor = UIColor(named: "YP Black")
+    let greyColor = UIColor(named: "ypGrey")
+    let blackColor = UIColor(named: "ypBlack")
     
     weak var delegate: WebViewViewControllerDelegate?
     private var estimatedProgressObservation: NSKeyValueObservation?

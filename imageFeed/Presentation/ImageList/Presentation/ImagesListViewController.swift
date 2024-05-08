@@ -16,6 +16,7 @@ final class ImagesListViewController: UIViewController {
         addObserver()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         imagesListService.fetchPhotosNextPage()
+        updateTableViewAnimated()
     }
     
     private lazy var dateFormatter: DateFormatter = {
@@ -61,7 +62,7 @@ extension ImagesListViewController: UITableViewDelegate {
             let viewController = segue.destination as! SingleImageViewController
             let indexPath = sender as! IndexPath
             let photo = imagesListService.photos[indexPath.row]
-            viewController.imageUrl = URL(string: photo.thumbImageURL)
+            viewController.imageUrl = URL(string: photo.largeImageURL)
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -132,7 +133,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
                                                   preferredStyle: .alert)
                     let button = UIAlertAction(title: "Ok",
                                                style: .cancel) { _ in
-                        self.dismiss(animated: true)
+                        alert.dismiss(animated: true)
                     }
                     alert.addAction(button)
                     self.present(alert, animated: true)

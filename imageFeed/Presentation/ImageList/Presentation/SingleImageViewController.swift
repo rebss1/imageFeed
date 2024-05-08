@@ -1,17 +1,10 @@
 import Foundation
 import UIKit
 import Kingfisher
+import ProgressHUD
 
 final class SingleImageViewController: UIViewController {
-    var imageUrl: URL? {
-        didSet {
-            guard isViewLoaded else { return } 
-            imageView.kf.setImage(with: imageUrl)
-            if let image = imageView.image {
-                rescaleAndCenterImageInScrollView(image: image)
-            }
-        }
-    }
+    var imageUrl: URL?
     
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
@@ -30,9 +23,26 @@ final class SingleImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.kf.setImage(with: imageUrl)
-        if let image = imageView.image {
-            rescaleAndCenterImageInScrollView(image: image)
+        UIBlockingProgressHUD.animate()
+        imageView.kf.setImage(with: imageUrl) {
+            [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            
+            switch result {
+            case .success(let imageResult):
+                self?.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure:
+                let alert = UIAlertController(title: "OOOPS!",
+                                              message: "Something went wrong with picture(",
+                                              preferredStyle: .alert)
+                let button = UIAlertAction(title: "Ok",
+                                           style: .cancel) { _ in
+                    alert.dismiss(animated: true)
+                    self?.dismiss(animated: true)
+                }
+                alert.addAction(button)
+                self?.present(alert, animated: true)
+            }
         }
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
@@ -59,12 +69,5 @@ final class SingleImageViewController: UIViewController {
 extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
-    }
-    
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        view?.frame = CGRect(x: self.view.frame.midX - (view?.frame.width)! / 2,
-                             y: self.view.frame.midY - (view?.frame.height)! / 2,
-                             width: (view?.frame.width)!,
-                             height: (view?.frame.height)!)
     }
 }
