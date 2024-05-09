@@ -107,7 +107,21 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func didTapBackButton() {
-        profileLogoutService.logout()
+        let alert = UIAlertController(title: "До свидания!",
+                                      message: "Точно хотите выйти?",
+                                      preferredStyle: .alert)
+        let yesButton = UIAlertAction(title: "Да",
+                                      style: .destructive) { _ in
+            alert.dismiss(animated: true)
+            self.profileLogoutService.logout()
+        }
+        let noButton = UIAlertAction(title: "Нет",
+                                     style: .cancel) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(yesButton)
+        alert.addAction(noButton)
+        present(alert, animated: true)
     }
 }
     
