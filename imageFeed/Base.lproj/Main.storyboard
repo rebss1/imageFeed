@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -129,9 +129,10 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZwV-OY-bG5">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
+                                        <color key="backgroundColor" name="ypBlack"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" name="YP Background"/>
+                                <color key="backgroundColor" name="ypBlack"/>
                                 <constraints>
                                     <constraint firstItem="ZwV-OY-bG5" firstAttribute="leading" secondItem="gq6-Sp-HRr" secondAttribute="leading" id="W21-Ef-Teb"/>
                                     <constraint firstAttribute="trailing" secondItem="ZwV-OY-bG5" secondAttribute="trailing" id="cgU-7E-irs"/>
@@ -168,7 +169,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MYW-PV-Exe"/>
-                        <color key="backgroundColor" name="ypBackground "/>
+                        <color key="backgroundColor" name="ypBlack"/>
                         <constraints>
                             <constraint firstItem="FMv-dJ-7Mv" firstAttribute="top" secondItem="MYW-PV-Exe" secondAttribute="top" constant="8" id="48J-6W-LLM"/>
                             <constraint firstAttribute="bottom" secondItem="gq6-Sp-HRr" secondAttribute="bottom" id="61Z-jo-EIX"/>
@@ -207,6 +208,9 @@
         </namedColor>
         <namedColor name="ypBackground ">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ypBlack">
+            <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

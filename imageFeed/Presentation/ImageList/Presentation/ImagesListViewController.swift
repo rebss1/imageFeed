@@ -20,11 +20,11 @@ final class ImagesListViewController: UIViewController {
     }
     
     private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MMMM yyyy"
+            formatter.locale = Locale(identifier: "ru_RU")
+            return formatter
+        }()
     
     private func addObserver() {
         imagesListServiceObserver = NotificationCenter.default
@@ -59,8 +59,8 @@ extension ImagesListViewController: UITableViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showSingleImageIdentifier {
-            let viewController = segue.destination as! SingleImageViewController
-            let indexPath = sender as! IndexPath
+            guard let viewController = segue.destination as? SingleImageViewController,
+                  let indexPath = sender as? IndexPath else { return }
             let photo = imagesListService.photos[indexPath.row]
             viewController.imageUrl = URL(string: photo.largeImageURL)
         } else {
@@ -122,7 +122,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let photo = imagesListService.photos[indexPath.row]
         imagesListService.changeLike(photoId: photo.id,
-                                     isLike: !photo.isLiked) { result in
+                                     isLike: !photo.isLiked) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photo):
@@ -136,7 +136,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
                         alert.dismiss(animated: true)
                     }
                     alert.addAction(button)
-                    self.present(alert, animated: true)
+                    self?.present(alert, animated: true)
                     break
                 }
                 cell.likeButton.isEnabled = true

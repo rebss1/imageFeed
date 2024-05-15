@@ -5,6 +5,7 @@ import Kingfisher
 final class ProfileViewController: UIViewController {
     
     let whiteColor = UIColor(named: "ypWhite")
+    let blackColor = UIColor(named: "ypBlack")
     let whiteWithAlphaColor = UIColor(named: "ypWhite50")
     let redColor = UIColor(named: "ypRed")
     
@@ -54,6 +55,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func addConstraints() {
+        view.backgroundColor = blackColor
         imageView.tintColor = .gray
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,9 +113,9 @@ final class ProfileViewController: UIViewController {
                                       message: "Точно хотите выйти?",
                                       preferredStyle: .alert)
         let yesButton = UIAlertAction(title: "Да",
-                                      style: .destructive) { _ in
+                                      style: .destructive) { [weak self] _ in
             alert.dismiss(animated: true)
-            self.profileLogoutService.logout()
+            self?.profileLogoutService.logout()
         }
         let noButton = UIAlertAction(title: "Нет",
                                      style: .cancel) { _ in
