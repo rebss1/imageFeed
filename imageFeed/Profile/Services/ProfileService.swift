@@ -34,4 +34,8 @@ final class ProfileService {
             }
         }
     }
+    
+    func cleanData() {
+        profile = nil
+    }
 }

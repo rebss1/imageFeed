@@ -4,6 +4,7 @@ import UIKit
 
 final class SplashViewController: UIViewController {
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
+    let blackColor = UIColor(named: "ypBlack")
     private let profileService = ProfileService.shared
     private let storage = OAuthTokenStorage()
     private let profileImageService = ProfileImageService.shared
@@ -15,9 +16,8 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if OAuthTokenStorage().token != nil {
-            guard let token = storage.token else { return }
-                fetchProfile(token)
+        if let token = storage.token {
+            fetchProfile(token)
         } else {
             switchToAuthViewController()
         }
@@ -42,6 +42,7 @@ final class SplashViewController: UIViewController {
     }
     
     private func addConstraints() {
+        view.backgroundColor = blackColor
         let image = UIImage(named: "launchScreenIcon")
         let imageView = UIImageView()
         imageView.image = image
@@ -51,24 +52,23 @@ final class SplashViewController: UIViewController {
         imageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 78).isActive = true
     }
 }
 
 extension SplashViewController: AuthViewControllerDelegate {
-    func didAuthetificate(_ vc: AuthViewController, didAuthenticateWithCode: String) {
+    func didAuthetificate(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
-        guard let token = storage.token else { return }
-        fetchProfile(token)
+        fetchOAuthToken(code)
     }
     
-    func fetchOAuthToken(_ code: String,
-                         completion: @escaping (Result<String, Error>) -> Void) {
+    private func fetchOAuthToken(_ code: String) {
         OAuthService.shared.fetchOAuthToken(code: code) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let token):
-                    OAuthTokenStorage().store(token: token)
+                    self?.storage.store(token: token)
+                    self?.fetchProfile(token)
                     self?.switchToTabBarController()
                 case .failure:
                     break
@@ -87,7 +87,10 @@ extension SplashViewController: AuthViewControllerDelegate {
                     self?.profileImageService.fetchProfileImageURL(profile.username) { _ in }
                     self?.switchToTabBarController()
                 case .failure:
-                    print("error in splashViewController")
+                    let alert = UIAlertController(title: "OOOPS!",
+                                                  message: "Something went wrong with Unsplash API(",
+                                                  preferredStyle: .alert)
+                    self?.present(alert, animated: true)
                     break
                 }
             }
