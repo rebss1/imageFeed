@@ -14,7 +14,7 @@ struct Action {
     let style: UIAlertAction.Style
 }
 
-struct AlertData {
+public struct AlertData {
     let title: String
     let message: String
     let actions: [Action]

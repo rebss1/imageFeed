@@ -1,13 +1,13 @@
 //
-//  imageFeedTUITestsLaunchTests.swift
-//  imageFeedTUITests
+//  imageFeedUITestsLaunchTests.swift
+//  imageFeedUITests
 //
 //  Created by Илья Лощилов on 22.05.2024.
 //
 
 import XCTest
 
-final class imageFeedTUITestsLaunchTests: XCTestCase {
+final class imageFeedUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -2,15 +2,19 @@ import Foundation
 import UIKit
 import Kingfisher
 
-final class ProfileViewController: UIViewController {
+public protocol ProfileViewControllerProtocol {
+    var presenter: ProfilePresenterProtocol? { get set }
+    func showAlert(data: AlertData)
+}
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+    var presenter: ProfilePresenterProtocol?
     
     let whiteColor = UIColor(named: "ypWhite")
     let blackColor = UIColor(named: "ypBlack")
     let whiteWithAlphaColor = UIColor(named: "ypWhite50")
     let redColor = UIColor(named: "ypRed")
-    
-    private let profileService = ProfileService.shared
-    private let profileLogoutService = ProfileLogoutService.shared
+
     private var profileImageServiceObserver: NSObjectProtocol?
     
     var imageView = UIImageView()
@@ -20,14 +24,14 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         addConstraints()
-        updateProfileDetails()
         addObserver()
+        updateProfileDetails()
     }
     
     private func addObserver() {
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
-                forName: ProfileImageService.didChangeNotification,
+                forName: ProfileConstants.didChangeNotification,
                 object: nil,
                 queue: .main
             ) { [weak self] _ in
@@ -38,8 +42,7 @@ final class ProfileViewController: UIViewController {
     
     private func updateAvatar() {
         guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
+            let url = presenter?.getProfileImageURL()
         else { return }
         let processor = RoundCornerImageProcessor(cornerRadius: 100)
         imageView.kf.setImage(with: url,
@@ -48,10 +51,18 @@ final class ProfileViewController: UIViewController {
     }
     
     private func updateProfileDetails() {
-        guard let profile = profileService.profile else { return }
+        guard let profile = presenter?.getProfile() else { return }
         nameLabel.text = profile.name
         loginNameLabel.text = profile.loginName
         bioLabel.text = profile.bio
+    }
+    
+    func showAlert(data: AlertData) {
+        showAlert(alertData: data)
+    }
+    
+    @objc private func didTapLogoutButton() {
+        presenter?.didTapLogoutButton()
     }
     
     private func addConstraints() {
@@ -98,33 +109,14 @@ final class ProfileViewController: UIViewController {
         
         let button = UIButton.systemButton(with: UIImage(named: "logout_image")!,
                                            target: self,
-                                           action: #selector(didTapBackButton))
+                                           action: #selector(didTapLogoutButton))
         button.tintColor = redColor
         
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
+        button.accessibilityIdentifier = "logout button"
         
         button.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
-    
-    @objc private func didTapBackButton() {
-        let alert = UIAlertController(title: "До свидания!",
-                                      message: "Точно хотите выйти?",
-                                      preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: "Да",
-                                      style: .destructive) { [weak self] _ in
-            alert.dismiss(animated: true)
-            self?.profileLogoutService.logout()
-        }
-        let noButton = UIAlertAction(title: "Нет",
-                                     style: .cancel) { _ in
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(yesButton)
-        alert.addAction(noButton)
-        present(alert, animated: true)
-    }
 }
-    
-    
