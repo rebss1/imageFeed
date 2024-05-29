@@ -23,12 +23,12 @@ final class NetworkClient {
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
                 completion(.failure(NetworkClientError.taskError))
-                print("[imageFeed][fetch][\(urlRequest.url ?? NetworkConstants.defaultBaseURL)]: [\(String(describing: error))]")
+                print("[imageFeed][fetch][\(String(describing: urlRequest.url ?? NetworkConstants.defaultBaseURL))]: [\(String(describing: error))]")
             }
             
             if let response = response as? HTTPURLResponse, response.statusCode < 200 || response.statusCode >= 300 {
                 completion(.failure(NetworkClientError.httpStatusCode(response.statusCode)))
-                print("[imageFeed][fetch][\(urlRequest.url ?? NetworkConstants.defaultBaseURL)]: [\(response.statusCode)]")
+                print("[imageFeed][fetch][\(String(describing: urlRequest.url ?? NetworkConstants.defaultBaseURL))]: [\(response.statusCode)]")
                 return
             }
             
@@ -42,7 +42,7 @@ final class NetworkClient {
                     self.task = nil
                 } catch {
                     completion(.failure(error))
-                    print("[imageFeed][fetch][\(urlRequest.url ?? NetworkConstants.defaultBaseURL)]: [\(error)]")
+                    print("[imageFeed][fetch][\(String(describing: urlRequest.url ?? NetworkConstants.defaultBaseURL))]: [\(error)]")
                 }
             }
         }

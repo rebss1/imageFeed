@@ -42,7 +42,13 @@ final class AuthViewController: UIViewController {
     
     @objc private func didTapLoginButton() {
         let webViewViewController = WebViewViewController()
+        
+        let authHelper = AuthHelper()
+        let webViewPresenter = WebViewPresenter(authHelper: authHelper)
+        webViewViewController.presenter = webViewPresenter
+        webViewPresenter.view = webViewViewController
         webViewViewController.delegate = self
+        
         self.navigationController?.pushViewController(webViewViewController, animated: true)
     }
     
@@ -59,6 +65,7 @@ final class AuthViewController: UIViewController {
         view.backgroundColor = blackColor
         view.addSubview(logoImage)
         view.addSubview(loginButton)
+        loginButton.accessibilityIdentifier = "Authenticate"
     }
     
     private func addConstraints() {

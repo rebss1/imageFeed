@@ -6,6 +6,7 @@ import ProgressHUD
 final class SingleImageViewController: UIViewController {
     var imageUrl: URL?
     
+    @IBOutlet private var backButton: UIButton!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
     
@@ -23,6 +24,7 @@ final class SingleImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backButton.accessibilityIdentifier = "nav back button white"
         UIBlockingProgressHUD.animate()
         imageView.kf.setImage(with: imageUrl) {
             [weak self] result in
