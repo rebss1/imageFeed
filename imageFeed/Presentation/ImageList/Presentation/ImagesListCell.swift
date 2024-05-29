@@ -36,6 +36,7 @@ public final class ImagesListCell: UITableViewCell {
     
     func configCell(_ url: URL?, _ date: String, _ isLiked: Bool) {
         cellImage.kf.indicatorType = .activity
+        likeButton.accessibilityIdentifier = "like button"
         let placeholder = UIImage(named: "placeholderImage")
         guard let url = url else { return }
         cellImage.kf.setImage(with: url,

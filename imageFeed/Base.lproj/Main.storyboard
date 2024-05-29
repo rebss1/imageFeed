@@ -62,6 +62,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTU-8I-j6m" userLabel="Like Button">
                                                     <rect key="frame" x="331" y="11" width="42" height="42"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="like button"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="grayLike"/>
                                                     <connections>
@@ -147,6 +148,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMv-dJ-7Mv" userLabel="Return Button">
                                 <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="nav back button white"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="6Q1-IF-YTx"/>
                                     <constraint firstAttribute="height" constant="48" id="kli-N0-cfl"/>
@@ -183,6 +185,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ThX-Xx-pTX"/>
                     <connections>
+                        <outlet property="backButton" destination="FMv-dJ-7Mv" id="XCo-Cf-8Wh"/>
                         <outlet property="imageView" destination="ZwV-OY-bG5" id="QSP-0T-ebg"/>
                         <outlet property="scrollView" destination="gq6-Sp-HRr" id="o8C-HZ-h8F"/>
                     </connections>

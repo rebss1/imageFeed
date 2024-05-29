@@ -90,11 +90,11 @@ extension ImagesListViewController: UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
-        guard let imageListCell = cell as? ImagesListCell else {
+        guard let imageListCell = cell as? ImagesListCell,
+              let photo = presenter?.getPhotos()[indexPath.row],
+              let url = URL(string: photo.thumbImageURL) else {
             return UITableViewCell()
         }
-        guard let photo = presenter?.getPhotos()[indexPath.row] else {return UITableViewCell() }
-        guard let url = URL(string: photo.thumbImageURL) else {return UITableViewCell() }
         var dateText = ""
         if let date = presenter?.getPhotos()[indexPath.row].createdAt {
             dateText = dateFormatter.string(from: date)
@@ -112,7 +112,10 @@ extension ImagesListViewController: UITableViewDataSource {
         willDisplay cell: UITableViewCell,
         forRowAt indexPath: IndexPath
     ) {
-        presenter?.fetchNextPhotos(indexPath: indexPath)
+        let isTesting = ProcessInfo().arguments.contains("testMode")
+        if !isTesting || (isTesting && indexPath.row == 1) {
+            presenter?.fetchNextPhotos(indexPath: indexPath)
+        }
     }
 }
 

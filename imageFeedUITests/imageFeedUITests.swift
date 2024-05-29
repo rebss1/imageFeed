@@ -13,12 +13,14 @@ final class imageFeedUITests: XCTestCase {
     
     override func setUpWithError() throws {
         continueAfterFailure = false // настройка выполнения тестов, которая прекратит выполнения тестов, если в тесте что-то пошло не так
-        
+        let app = XCUIApplication()
+        app.launchArguments = ["testMode"]
         app.launch() // запускаем приложение перед каждым тестом
     }
     
     func testAuth() throws {
         // тестируем сценарий авторизации
+        sleep(5)
         app.buttons["Authenticate"].tap()
         
         let webView = app.webViews["UnsplashWebView"]
@@ -29,14 +31,14 @@ final class imageFeedUITests: XCTestCase {
         XCTAssertTrue(loginTextField.waitForExistence(timeout: 5))
         
         loginTextField.tap()
-        loginTextField.typeText("")
+        loginTextField.typeText("loshilovilya@yandex.ru")
         webView.swipeUp()
         
         let passwordTextField = webView.descendants(matching: .secureTextField).element
         XCTAssertTrue(passwordTextField.waitForExistence(timeout: 5))
         
         passwordTextField.tap()
-        passwordTextField.typeText("")
+        passwordTextField.typeText("BiGeNoT_20042311")
         webView.swipeUp()
         
         webView.buttons["Login"].tap()
@@ -51,12 +53,12 @@ final class imageFeedUITests: XCTestCase {
         // тестируем сценарий ленты
         let tablesQuery = app.tables
         
-        let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
+        let cell = tablesQuery.descendants(matching: .cell).element(boundBy: 0)
         cell.swipeUp()
         
         sleep(2)
         
-        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
+        let cellToLike = tablesQuery.descendants(matching: .cell).element(boundBy: 1)
         
         cellToLike.buttons["like button"].tap()
         
@@ -81,8 +83,8 @@ final class imageFeedUITests: XCTestCase {
         sleep(3)
         app.tabBars.buttons.element(boundBy: 1).tap()
         
-        XCTAssertTrue(app.staticTexts[""].exists)
-        XCTAssertTrue(app.staticTexts[""].exists)
+        XCTAssertTrue(app.staticTexts["Ilya Loshilov"].exists)
+        XCTAssertTrue(app.staticTexts["@rebss1"].exists)
         
         app.buttons["logout button"].tap()
         
