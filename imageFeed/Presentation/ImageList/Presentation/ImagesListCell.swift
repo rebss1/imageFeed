@@ -6,7 +6,7 @@ protocol ImagesListCellDelegate: AnyObject {
     func didTapLikeButton(_ cell: ImagesListCell) 
 }
 
-final class ImagesListCell: UITableViewCell {
+public final class ImagesListCell: UITableViewCell {
     
     weak var delegate: ImagesListCellDelegate?
     
@@ -15,7 +15,7 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    override func prepareForReuse() {
+    public override func prepareForReuse() {
         super.prepareForReuse()
         cellImage.kf.cancelDownloadTask()
     }
@@ -36,6 +36,7 @@ final class ImagesListCell: UITableViewCell {
     
     func configCell(_ url: URL?, _ date: String, _ isLiked: Bool) {
         cellImage.kf.indicatorType = .activity
+        likeButton.accessibilityIdentifier = "like button"
         let placeholder = UIImage(named: "placeholderImage")
         guard let url = url else { return }
         cellImage.kf.setImage(with: url,
